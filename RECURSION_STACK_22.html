@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECURSION // Algorithm Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #080308; --surface: #140814; --border: #3b113b; --text: #fdf4ff; --muted: #d946ef; --accent: #ec4899; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; padding: 2rem; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .top-bar { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; font-size: 0.85rem; color: var(--muted); }
+        
+        .algo-workspace { margin: 3rem 0; display: grid; grid-template-columns: 1fr 350px; gap: 2rem; align-items: stretch; }
+        .stack-box { background: var(--surface); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+        .stack-item { background: rgba(236, 72, 153, 0.05); border-left: 3px solid var(--accent); padding: 1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
+        .stack-item:hover { background: rgba(236, 72, 153, 0.12); }
+
+        .control-side { background: var(--surface); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+        .control-side h1 { font-size: 1.6rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
+        .control-side p { color: #f5d0fe; opacity: 0.7; font-size: 0.85rem; margin-bottom: 2rem; }
+
+        .btn { background: var(--accent); color: #fff; border: none; padding: 1rem; font-family: inherit; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.9; }
+
+        .bottom-bar { display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.8rem; color: var(--muted); }
+        a { color: var(--muted); text-decoration: none; }
+        a:hover { color: var(--text); }
+
+        .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--surface); border: 1px solid var(--accent); color: var(--text); padding: 1rem 1.5rem; font-size: 0.85rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; z-index: 10; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        @media(max-width: 800px) { .algo-workspace { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div>// RECURSION_STACK_22</div>
+        <div>TIME O(N LOG N)</div>
+    </div>
+    <div class="algo-workspace">
+        <div class="stack-box">
+            <div class="stack-item" onclick="showToast('Функция quicksort([3, 1, 4, 1, 5]) вызвана')">
+                <span>quicksort(arr, low, high)</span>
+                <span style="color: var(--accent);">DEPTH: 1</span>
+            </div>
+            <div class="stack-item" onclick="showToast('Разделение массива по опорному элементу')">
+                <span>partition(pivot = 4)</span>
+                <span style="color: var(--accent);">DEPTH: 2</span>
+            </div>
+            <div class="stack-item" onclick="showToast('Базовый случай достигнут, возврат массива')">
+                <span>base_case_return()</span>
+                <span style="color: var(--accent);">DONE</span>
+            </div>
+        </div>
+        <div class="control-side">
+            <div>
+                <h1>Рекурсивные алгоритмы</h1>
+                <p>Анализ глубины стека вызовов, разделения массивов и оптимизации алгоритмов сортировки.</p>
+            </div>
+            <button class="btn" onclick="showToast('Стек алгоритма полностью очищен')">Сбросить стек</button>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        <div>wA Studio // Computer Science Lab</div>
+        <a href="https://w4attack.github.io/port/" target="_blank">w3bAttacking © 2026 // wA Studio</a>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script>
+        function showToast(text) {
+            const t = document.getElementById('toast');
+            t.textContent = text;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
